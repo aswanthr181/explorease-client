@@ -33,7 +33,7 @@ function Message() {
 console.log(UserData.image,'9696969');
 
     useEffect(() => {
-        let socket = io('http://localhost:3000')
+        let socket = io('https://api.explorease.site/')
         setSocket(socket)
         socket.emit('setup', chatId)
         console.log('socket connecting');
