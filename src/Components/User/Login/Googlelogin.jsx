@@ -46,6 +46,7 @@ const userAxios=UserAxios()
                 })
                 .catch((err)=>{
                     console.log(err)
+                    generaterror(err)
                 })
                 
               

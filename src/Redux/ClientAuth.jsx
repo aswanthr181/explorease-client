@@ -12,7 +12,8 @@ export const ClientAuth=createSlice({
             state.Token=action.payload.token
         },
         ClientLogout(state,action){
-            state.Token="";
+            state.Token="",
+            state.UserData=null
         },
         GetUserData(state,action){
             state.UserData=action.payload.UserData;

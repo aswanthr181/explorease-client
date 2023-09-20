@@ -9,7 +9,7 @@ function BookingDetails() {
   const userAxios = UserAxios()
   const { id } = useParams();
   const [data, setData] = useState()
-  const[passengers,setPassengers]=useState([])
+  const [passengers, setPassengers] = useState([])
 
 
   const [show, setShow] = useState(false);
@@ -38,32 +38,32 @@ function BookingDetails() {
     try {
 
 
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Do you want to Cancel!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes,  !",
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to Cancel!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes,  !",
+      })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            setLoad(load + 1)
+            const response = await userAxios.patch(`/cancelBooking?id=${id}`);
+            Swal.fire("canceled!")
+            console.log(response.data.data);
+            setBooking(response.data.data)
+          }
         })
-            .then(async (result) => {
-                if (result.isConfirmed) {
-                    setLoad(load + 1)
-                    const response = await userAxios.patch(`/cancelBooking?id=${id}`);
-                    Swal.fire("canceled!")
-                    console.log(response.data.data);
-                    setBooking(response.data.data)
-                }
-            })
     } catch (error) {
-        console.log(err)
+      console.log(err)
     }
-}
+  }
   return (
     <>
       <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
-        <div className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
+        <div className="xl:w-2/6 lg:w-2/5 w-80 ">
           <img className="w-full" alt="img of a girl posing" src={data?.trip.photo} />
           <h1
             className="	lg:text-2xl	text-xl	font-semibold	lg:leading-6 leading-7 	text-gray-800	mt-6"
@@ -71,27 +71,27 @@ function BookingDetails() {
             {data?.trip.start[0].place.split(',')[0].trim()} to {data?.trip.destination[0].place.split(',')[0].trim()}
           </h1>
           <table class=" w-full mt-6 border-2 table-fixed">
-  <thead className='border-2 text-slate-700'>
-    <tr className='border-2  border-black' >
-      <th>Name</th>
-      <th>Age</th>
-      <th>Gender</th>
-    </tr>
+            <thead className='border-2 text-slate-700'>
+              <tr className='border-2  border-black' >
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+              </tr>
 
 
-    
-    {passengers.length>0?passengers.map((user,i)=>{
-      return(
-        <tr key={i} className='border-2 text-center border-slate-800  '>
-      <td>{user.name} </td>
-      <td>{user.age} </td>
-      <td>{user.gender?user.gender:'Male'} </td>
-    </tr>
-      )
-    }):''}
-   
-    </thead>
-</table>
+
+              {passengers.length > 0 ? passengers.map((user, i) => {
+                return (
+                  <tr key={i} className='border-2 text-center border-slate-800  '>
+                    <td>{user.name} </td>
+                    <td>{user.age} </td>
+                    <td>{user.gender ? user.gender : 'Male'} </td>
+                  </tr>
+                )
+              }) : ''}
+
+            </thead>
+          </table>
         </div>
 
 
@@ -115,20 +115,20 @@ function BookingDetails() {
             <p className="text-base leading-4 mt-7 text-gray-600">Trip Date: {data?.trip.date}</p>
             <p className="text-base leading-4 mt-4 text-gray-600">Amount: {data?.trip.amount}</p>
             <p className="text-base leading-4 mt-4 text-gray-600">Payed: {data?.advance}</p>
-            {data?.isCanceled === 0 ? 
-            <p className="text-base leading-4 mt-4 text-gray-600">Amount to be payed:{data?.pending}</p>
+            {data?.isCanceled === 0 ?
+              <p className="text-base leading-4 mt-4 text-gray-600">Amount to be payed:{data?.pending}</p>
               : <p className="text-base leading-4 mt-4 text-red-700">This Booking is cancelled</p>
             }
             <p className="md:w-96 text-base leading-normal text-gray-600 mt-4"></p>
           </div>
 
-          {data?.isCanceled === 0 ?<button 
-          onClick={()=>cancelBooking(data?._id)}
+          {data?.isCanceled === 0 ? <button
+            onClick={() => cancelBooking(data?._id)}
             className=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none	text-white	bg-gray-800	w-full	py-4	hover:bg-gray-700	"
           >
             cancel
-          </button>:<p className="text-base leading-4 mt-4 text-red-700">Amount of {data?.advance} Refunded </p>}
-          
+          </button> : <p className="text-base leading-4 mt-4 text-red-700">Amount of {data?.advance} Refunded </p>}
+
           {/* <div>
             <div className="border-t border-b py-4 mt-7 border-gray-200">
               <div onClick={() => setShow(!show)} className="flex justify-between items-center cursor-pointer">

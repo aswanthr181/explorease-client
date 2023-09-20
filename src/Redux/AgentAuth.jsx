@@ -13,9 +13,10 @@ export const AgencyAuth=createSlice({
         },
         AgencyLogout(state,action){
             state.Token="";
+            state.AgencyData=null
         },
         GetAgencyData(state,action){
-            state.UserData=action.payload.UserData;
+            state.AgencyData=action.payload.UserData;
         }
     }
 })
