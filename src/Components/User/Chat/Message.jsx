@@ -30,7 +30,7 @@ function Message() {
         setProfile1(UserData?.image)
     }, [UserData]);
     const navigate = useNavigate()
-console.log(UserData.image,'9696969');
+console.log(UserData.image,'9696969',UserData.email);
 
     useEffect(() => {
         let socket = io('https://api.explorease.site/')

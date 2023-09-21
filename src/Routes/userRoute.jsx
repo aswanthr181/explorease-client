@@ -16,6 +16,8 @@ import ChatPage from '../Pages/User/ChatPage'
 import BookingDetailPage from '../Pages/User/BookingDetailPage'
 import WallletPage from '../Pages/User/WallletPage'
 import BookingForm from '../Components/User/BookingForm/BookingForm'
+import Error from '../Components/User/Error/Error'
+import AboutPage from '../Pages/User/AboutPage'
 
 
 function UserRoute() {
@@ -41,6 +43,8 @@ function UserRoute() {
             <Route path='/bookings' element={token?<BookingHistoryPage/>:<Login />} />
             <Route path='/bookingDetails/:id' element={token?<BookingDetailPage/>:<Login />} />
             <Route path='/chat/:id' element={<ChatPage/>}  />
+            <Route path='/about' element={<AboutPage/>} />
+            <Route path='/*' element={<Error/>} />
             
         </Routes>
     </div>
