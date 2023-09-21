@@ -107,7 +107,6 @@ console.log(UserData.image,'9696969',UserData.email);
                             <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
                                 <div className="flex flex-col h-full overflow-x-auto mb-4" ref={messageHolder} >
 
-                                                           {console.log(UserData,'ooooooo')}
                                     <div className="flex flex-col h-full">
                                         {messages.map((message) => (
                                             <div key={message._id} className="grid grid-cols-12 gap-y-2">
@@ -122,7 +121,7 @@ console.log(UserData.image,'9696969',UserData.email);
                                                         </div>
                                                         <div className="relative mr-3 w-full text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
                                                             <div className='break-words'>{message?.text}</div>
-                                                            <small className="text-xs text-gray-400"> {new Date(message?.createdAt).toLocaleString('en-US', {
+                                                            <small className="text-xs text-gray-400"> {new Date(message?.timestamp).toLocaleString('en-US', {
                                                                 hour: 'numeric',
                                                                 minute: 'numeric',
                                                                 hour12: true

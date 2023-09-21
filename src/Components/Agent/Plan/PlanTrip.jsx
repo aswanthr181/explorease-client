@@ -79,7 +79,7 @@ function PlanTrip({ isSubmit, setId, setDaylimit }) {
       if (result.status) {
         Toast.fire({
           icon: "success",
-          title: "Trip ",
+          title: "Trip registered ",
         })
         isSubmit(false)
         setId(result.id)
@@ -90,7 +90,7 @@ function PlanTrip({ isSubmit, setId, setDaylimit }) {
       }
 
     } catch (error) {
-
+      generateError(err)
     }
 
   }

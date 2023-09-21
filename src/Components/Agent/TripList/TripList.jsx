@@ -4,7 +4,8 @@ import AgencyAxios from '../../../Axios/agencyAxios'
 import { useNavigate } from 'react-router-dom'
 import Pagination from '../../Utilities/Pagination'
 import Swal from 'sweetalert2'
-
+import ClipLoader from 'react-spinners/ClipLoader'
+ClipLoader
 function TripList() {
   const agencyAxios = AgencyAxios()
   const navigate = useNavigate()
@@ -73,7 +74,7 @@ function TripList() {
     }
 }
   return (
-    <>
+    <>{records?
       <div className='md:px-56 h-full'>
 
         {/* {tripList.map((result) => {
@@ -170,6 +171,11 @@ function TripList() {
                       </div>
                 : null}
       </div>
+      :
+<div className='flex justify-center items-center w-screen h-[calc(100vh-128px)] m-auto '>
+          <ClipLoader className='' />
+
+        </div>}
 
     </>
   )

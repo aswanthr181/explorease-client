@@ -1,29 +1,46 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FiMessageSquare } from 'react-icons/fi';
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { AgencyLogout } from '../../../Redux/AgentAuth'
+import AgencyAxios from '../../../Axios/agencyAxios';
 
 
 
-const navigation = [
-  { name: 'Home', url: '/agency/home', current: false },
-  { name: 'Dashboard', url: '/agency/dashboard', current: false },
-  { name: 'Register', url: '/agency/registration', current: false },
-  { name: 'PLAN', url: '/agency/plan', current: false },
-]
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 function AgentNavbar() {
+  const agencyAxios=AgencyAxios()
   const navigate = useNavigate()
+  const [agencyData,setAgencyData]=useState()
+  const [logo,setLogo]=useState()
+  const navigation = [
+    { name: 'Home', url: '/agency/home', current: false },
+    { name: 'Dashboard', url: agencyData?.isApproved===2?'/agency/dashboard':'/agency/registration' , current: false },
+    { name: 'Chats', url: agencyData?.isApproved===2?'/agency/chat':'/agency/registration', current: false },
+    { name: 'PLAN', url: agencyData?.isApproved===2?'/agency/plan':'/agency/registration'  , current: false },
+  ]
 
   const dispatch = useDispatch()
   const token = useSelector((state) => state.Agency.Token)
+
+  useEffect(()=>{
+    if(token){
+      agencyAxios.get('/getAgencyData')
+      .then((res)=>{
+        setAgencyData(res.data.agencyData)
+        setLogo(res.data.agencyData.image)
+      }).catch((error)=>{
+				console.log(error);
+			})
+    }
+  },[])
 
   const logout = () => {
     dispatch(AgencyLogout())
@@ -78,16 +95,7 @@ function AgentNavbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                onClick={loadChat}
-                  type="button"
-                  className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="sr-only">View notifications</span>
-                  {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
-                  <FiMessageSquare className="h-6 w-6" aria-hidden="true" />
-
-                </button>
+                
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
@@ -96,7 +104,7 @@ function AgentNavbar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={logo?logo:''}
                         alt=""
                       />
                     </Menu.Button>
@@ -117,11 +125,12 @@ function AgentNavbar() {
 
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            <Link to='/agency/profile' >PROFILE</Link>
+                            
+                            <Link to={agencyData?.isApproved===2?'/agency/profile':'/agency/registration'} >{agencyData?.isApproved===2?'Profile':'Register'} </Link>
                           </h6>
                         )}
                       </Menu.Item>
-                      <Menu.Item>
+                      {agencyData?.isApproved===2?<Menu.Item>
                         {({ active }) => (
                           <h6
 
@@ -130,7 +139,7 @@ function AgentNavbar() {
                             <Link to='/agency/ourTrips' >Schedules</Link>
                           </h6>
                         )}
-                      </Menu.Item>
+                      </Menu.Item>:''}
                       {/* <Menu.Item>
                         {({ active }) => (
                           <a

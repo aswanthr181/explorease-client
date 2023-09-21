@@ -19,7 +19,7 @@ function Profile() {
                         <div className="md:relative">
                             <img
 
-                                src='/Logo/18f5e7f5-ebf2-41ea-81d7-c4a8c7091a25.jpg'
+                                src={data?data.image?data.image:'':''}
                                 className="w-36 h-36 md:w-44 rounded-full md:h-44 md:left-16"
                                 alt=""
                             />
@@ -36,26 +36,20 @@ function Profile() {
 
                                     <div className="flex  items-center">
                                         <p className="text-base font-josefin-sans md:text-lg">
-                                            Ranking:
+                                        {data?data.phone:''}
                                         </p>
-                                        <div className="ml-2 ">
-                                            {/* <span>⭐⭐⭐⭐⭐</span> */}
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex flex-col md:w-1/3 mt-12">
+                            {/* <div className="flex flex-col md:w-1/3 mt-12">
                                 <div className="flex items-center mb-2 md:mb-4">
-                                    <img
-                                        src="/footer/Cardmap.png"
-                                        alt=""
-                                        className="w-4 h-4 md:w-5 md:h-5"
-                                    />
+                                    
                                     <p className="ml-2 text-base font-josefin-sans md:text-lg">
                                         kochi
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
@@ -65,22 +59,27 @@ function Profile() {
                             <div className="bg-gray-100 p-4 rounded-lg shadow-md">
                                 <p className="text-lg font-semibold">Agency Details</p>
                                 <div className="flex justify-between mt-2">
+                                    <span className="font-bold">Owner</span>
+                                    <span>{data?.agentName?data.agentName:'Nil'}</span>
+                                </div>
+                                <div className="flex justify-between mt-2">
                                     <span className="font-bold">Reg:Number:</span>
                                     <span className="text-green-500 font-bold">
                                     {data?.regNumber?data.regNumber:'Nil'}
                                     </span>
                                 </div>
+                                <p className="text-lg font-semibold">Address</p>
                                 <div className="flex justify-between mt-2">
-                                    <span className="font-bold">Owner</span>
-                                    <span>{data?.agentName?data.agentName:'Nil'}</span>
+                                    <span className="font-bold">City:</span>
+                                    <span>{data?.regNumber?data.city:'Nil'}</span>
                                 </div>
                                 <div className="flex justify-between mt-2">
-                                    <span className="font-bold">Address:</span>
-                                    <span>Kochi</span>
+                                    <span className="font-bold">State</span>
+                                    <span>{data?.regNumber?data.state:'Nil'}</span>
                                 </div>
                                 <div className="flex justify-between mt-2">
-                                    <span className="font-bold">Working Hours:</span>
-                                    <span>3</span>
+                                    <span className="font-bold">Pin</span>
+                                    <span>{data?.regNumber?data.pin:'Nil'}</span>
                                 </div>
                             </div>
                         </div>
