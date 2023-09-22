@@ -27,6 +27,10 @@ function Signup() {
             generateError("Please enter a valid email address");
             return;
         }
+        if (mobile.length!==10) {
+            generateError("Please enter a valid mobile");
+            return;
+        }
 
         if (password.length < 6) {
             generateError("Password should be at least 6 characters long");
@@ -43,6 +47,8 @@ function Signup() {
             if (response.data.status) {
                 
                 navigate('/login')
+            } else if(response.data.status===false){
+                generateError(response.data.message)
             } else {
                 generateError(response.data.error);
             }
