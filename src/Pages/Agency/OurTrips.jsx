@@ -5,7 +5,7 @@ import AgentNavbar from '../../Components/Agent/Navbar/AgentNavbar'
 const TripList =lazy(()=>import('../../Components/Agent/TripList/TripList') )
 function OurTrips() {
   return (
-    <div className='h-full bg-white'>
+    <div className='min-h-screen bg-white'>
         <AgentNavbar />
         <div className='text-center mt-7  text-xl font-bold trackinge-wide'>OUR FUTURE SCHEDULES</div>
         
