@@ -173,7 +173,8 @@ function TripList() {
       </div>
       :
 <div className='bg-white flex justify-center items-center w-screen h-[calc(100vh-128px)] m-auto '>
-          <ClipLoader className='' />
+          {/* <ClipLoader className='' /> */}
+          <h6>NO BOOKINGS</h6>
 
         </div>}
 
