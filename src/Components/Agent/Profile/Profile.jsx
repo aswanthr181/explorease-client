@@ -54,8 +54,8 @@ function Profile() {
                     </div>
 
                     <div className="w-11/12 mx-auto h-1 border-t-2 border-gray-300 mt-5" />
-                    <div className="flex flex-col mt-[3%] md:flex-row items-center gap-6 md:justify-center">
-                        <div className="pb-5 font- md:pb-0 md:mb-10 grid gap-2 md:ml-4">
+                    <div className="m-auto mt-[3%] md:flex-row items-center gap-6 md:justify-center">
+                        <div className="pb-5  sm:w-3/4 md:w-2/4 font- md:pb-0 m-auto ">
                             <div className="bg-gray-100 p-4 rounded-lg shadow-md">
                                 <p className="text-lg font-semibold">Agency Details</p>
                                 <div className="flex justify-between mt-2">

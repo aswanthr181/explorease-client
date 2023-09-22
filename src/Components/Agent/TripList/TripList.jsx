@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Pagination from '../../Utilities/Pagination'
 import Swal from 'sweetalert2'
 import ClipLoader from 'react-spinners/ClipLoader'
-ClipLoader
+
 function TripList() {
   const agencyAxios = AgencyAxios()
   const navigate = useNavigate()

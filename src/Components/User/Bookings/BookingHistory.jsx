@@ -110,9 +110,13 @@ function BookingHistory() {
                                         <h5 className="font-black text-gray-800 md:text-xl text-xl">{trip.trip.title}</h5>
                                         <h6>BOOKING DATE:{formattedDate} </h6>
                                         <h6>AMOUNT PAID: ₹{trip.advance}</h6>
-                                        {trip.isCanceled === 0 ?
-                                            <h6>Balance ₹{trip.pending}</h6> : <h6>Amount of {0.8 * trip.advance} will be refunded</h6>}
+                                        {trip.trip.is_cancel===0?
+                                        trip.isCanceled === 0 ?
+                                            <h6>Balance ₹{trip.pending}</h6> : <h6>Amount of {0.8 * trip.advance} will be refunded</h6>
+                                            :<h6>this trip is cancelled by admin Amount of { trip.advance} will be refunded</h6>}
 
+                                       
+                                       
                                         {/* <p className="text-xl font-black text-gray-800">
                         $110
                         <span className="font-normal text-gray-600 text-base">/night</span>

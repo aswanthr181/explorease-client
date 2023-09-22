@@ -14,6 +14,7 @@ function Messages() {
     const [socket, setSocket] = useState(null)
     const [recepient, setReciepient] = useState(null)
     const [ok, setOk] = useState(false)
+    const [profile1,setProfile1]=useState()
 
     const messageHolder = useRef(null)
 
@@ -93,36 +94,8 @@ function Messages() {
 
     return (
         <div >
-            {/* <div className='w-4/12 h-screen flex justify-center items-center bg-black'> */}
             <div className="flex h-screen full antialiased justify-center items-center text-gray-800">
-                {/* <div className='w-5/12 h-[92%] rounded-lg bg-slate-300 ml-2 '>
-                    <h1 className='text-xl m-[3%]'>Chats  </h1>
-                    <div className='h-5/6  overflow-scroll w-full  bg-white'>
-                        {chatList ? chatList.map((list) => {
-                            return (<div
-                                onClick={() => {
-                                    setOk(true)
-                                    setChatId(list._id)
-                                    setReciepient(list.sender)
-                                    setMessages(list.messages)
-                                }}
-                                className='m-1 bg-slate-200 h-[15%]   flex items-center'>
-                                <img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' className='h-[70%] object-contain   md:block w-[10%] ml-[1%]' alt="" />
-                                <div className='overflow-hidden ml-1 h-[60%]  w-100'>
-                                    <h1>{list?.sender?.name}</h1>
-                                    <small className='w-[100%]  '>           </small>
-                                </div>
-                                <div className='md:mr-[2%] flex-col h-full'>
-
-                                </div>
-                            </div>)
-                        }) : <div><h1>no list</h1> </div>}
-
-
-                    </div>
-                    <button className='bg-black px-4 sm:hidden text-white hover:bg-white hover:text-black py-2 rounded-md'>Back</button>
-                </div> */}
-                {/* </div> */}
+                
 
                 <div className={!true ? "hidden md:flex w-2/6 md:w-7/12 lg:6/12 xl:w-4/12 h-[92%]  justify-center items-center rounded-lg bg-gray-300 ml-2 " : "w-2/6  h-[92%] flex justify-center items-center rounded-lg bg-gray-300 md:ml-2 "}>
                     <div className="h-[90%]  overflow-scroll w-[96%]  bg-gray-200">
@@ -141,11 +114,13 @@ function Messages() {
                                             setChatId(list._id)
                                             setReciepient(list.sender)
                                             setMessages(list.messages)
+                                            setProfile1(list.sender?.image)
                                         }}
                                             className="m-1 bg-white h-[5rem]  flex items-center"
                                         >
                                             <img
-                                                src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'
+                                                src={list?.sender?.image}
+                                                // 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'
                                                 className="h-[50%] rounded-full  md:block w-[10%] ml-[1%]"
                                                 alt=""
                                             />
@@ -224,7 +199,8 @@ function Messages() {
                                                 <div className="flex flex-row items-center">
                                                     <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                                                         <img
-                                                            src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'
+                                                            src={profile1?profile1:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'}
+                                                            // 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'
                                                             alt="Avatar"
                                                             className="h-full w-full rounded-full"
                                                         />

@@ -122,12 +122,16 @@ function BookingDetails() {
             <p className="md:w-96 text-base leading-normal text-gray-600 mt-4"></p>
           </div>
 
-          {data?.isCanceled === 0 ? <button
+          {
+           data?.trip.is_cancel===0?
+          data?.isCanceled === 0 ? <button
             onClick={() => cancelBooking(data?._id)}
             className=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none	text-white	bg-gray-800	w-full	py-4	hover:bg-gray-700	"
           >
             cancel
-          </button> : <p className="text-base leading-4 mt-4 text-red-700">Amount of {data?.advance} Refunded </p>}
+          </button> : <p className="text-base leading-4 mt-4 text-red-700">Amount of {data?.advance} Refunded </p>
+          :<p className="text-base leading-4 mt-4 text-red-700">This trip is cancelled by admin.Amount of {data?.advance} Refunded </p>
+          }
 
           {/* <div>
             <div className="border-t border-b py-4 mt-7 border-gray-200">

@@ -28,7 +28,7 @@ function Signup() {
             return;
         }
 
-        if (password.length < 4) {
+        if (password.length < 6) {
             generateError("Password should be at least 6 characters long");
             return;
         }
@@ -59,7 +59,7 @@ function Signup() {
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         className="mx-auto h-10 w-auto"
-                        src="Logo/Screenshot 2023-07-24 105235.png"
+                        src="/Logo/18f5e7f5-ebf2-41ea-81d7-c4a8c7091a25.jpg"
                         alt="Your Company"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
