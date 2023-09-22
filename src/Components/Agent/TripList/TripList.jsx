@@ -70,7 +70,7 @@ function TripList() {
                 }
             })
     } catch (error) {
-        console.log(err)
+        console.log(error)
     }
 }
   return (
