@@ -74,7 +74,7 @@ function TripList() {
     }
 }
   return (
-    <>{records?
+    <>{records.length>0?
       <div className='md:px-56 h-full'>
 
         {/* {tripList.map((result) => {
@@ -172,7 +172,7 @@ function TripList() {
                 : null}
       </div>
       :
-<div className='flex justify-center items-center w-screen h-[calc(100vh-128px)] m-auto '>
+<div className='bg-white flex justify-center items-center w-screen h-[calc(100vh-128px)] m-auto '>
           <ClipLoader className='' />
 
         </div>}
