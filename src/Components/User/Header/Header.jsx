@@ -14,8 +14,8 @@ import UserAxios from '../../../Axios/userAxios'
 
 const navigation = [
     { name: 'HOME', href: '/', current: true },
-    { name: 'GUIDE', href: '/', current: false },
     { name: 'ABOUT', href: '/about', current: false },
+    { name: 'Bookings', href: '/bookings', current: false },
     { name: 'TRIPS', href: '/trips', current: false },
   ]
   

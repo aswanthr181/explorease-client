@@ -61,7 +61,7 @@ try {
       icon: "success",
       title: result.message,
     })
-    navigate('/home')
+    navigate('/agency/home')
   }
 } catch (error) {
   generateError(err)
