@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 import { Toaster, toast } from 'react-hot-toast';
 import { useDispatch, useSelector} from 'react-redux';
 // import { clientLogin } from '../../Redux/client';
-import {ClientLogin} from '../../../Redux/ClientAuth'
+import {ClientLogin,GetUserData} from '../../../Redux/ClientAuth'
 
 
 
@@ -30,12 +30,12 @@ const userAxios=UserAxios()
                     console.log('google response  ',res.data);
                     if(res.data.Success){
                         const token=res.data.userSignUp.token
+                        const UserData=res.data.user
                         dispatch(
                             ClientLogin({
-                                token: token
-                                
-                            })
-                        )
+                                token: token  
+                            }))
+                        dispatch(GetUserData({UserData:UserData}))    
                         navigate('/')
 
                     }
